@@ -127,6 +127,7 @@ elif echo "$ID $VERSION_ID" | grep -E -q 'centos 8|rocky 8'; then
 
     # Additional packages
     PKGS="${PKGS} patch wget tar openssl-devel"
+    PKGS="${PKGS} boost-devel"
 
     dnf install -y ${PKGS}
 
@@ -143,7 +144,7 @@ elif echo "$ID $VERSION_ID" | grep -E -q 'centos 8|rocky 8'; then
     tar xf argtable2-13.tar.gz
     cd argtable2-13
     ./configure
-    make -j 4
+    make -j 8
     make install
 
     ## catch
@@ -157,7 +158,7 @@ elif echo "$ID $VERSION_ID" | grep -E -q 'centos 8|rocky 8'; then
     mkdir build
     cd build
     cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-    make -j 4
+    make -j 8
     make install
 
     ## other deps
@@ -171,7 +172,7 @@ elif echo "$ID $VERSION_ID" | grep -E -q 'centos 8|rocky 8'; then
     mkdir build
     cd build
     cmake ..
-    make -j 4
+    make -j 8
     make install
     ldconfig
 
@@ -182,7 +183,7 @@ elif echo "$ID $VERSION_ID" | grep -E -q 'centos 8|rocky 8'; then
     cd isa-l
     ./autogen.sh
     ./configure
-    make
+    make -j 8
     make install
 
     python3 -m pip install py-markdown-table pyyaml
